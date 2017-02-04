@@ -54,3 +54,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# Private configuration files
+src/firebase.js
