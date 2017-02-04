@@ -1,6 +1,9 @@
 
+// dependencies
+var path = require('path');
+
 // grab our gulp packages
-var gulp  = require('gulp');
+var gulp = require('gulp');
 var gutil = require('gulp-util');
 
 var exec = require('child_process').exec;
@@ -20,63 +23,80 @@ var _ = require('underscore');
 // VARIABLES
 var PACKAGE_JSON = './package.json';
 
-var SRC_FOLDER = './src/';
-var SRC_WEBAPP = [
-	SRC_FOLDER + 'www/index.html',
-	SRC_FOLDER + 'www/app/*.js'
-	//,SRC_FOLDER + 'www/css/homer.css'
-];
-var SRC_FILES = [
-	SRC_FOLDER + '**/*'
-];
-SRC_FILES = SRC_FILES.concat(_.map(SRC_WEBAPP, function(f){
-	return '!' + f;
-}));
-var BUILD_FOLDER = './build/';
-var BUILD_FILES = BUILD_FOLDER + '**/*';
+var BACKEND_FOLDER = './backend/';
+var FRONTEND_FOLDER = './frontend/';
 
-// create a default task and just log a message
-gulp.task('default', ['watch']);
+var BUILD_FOLDER = './build/';
+
+// default task and clean
+gulp.task('default', ['dev']);
 
 gulp.task('clean', function(){
 	return gulp.src(BUILD_FOLDER)
 	.pipe(clean());
 });
 
-gulp.task('webapp', function () {
-	return gulp.src(SRC_FOLDER+'www/index.html')
-	.pipe(useref())
-	.pipe(gulp.dest(BUILD_FOLDER+'www'));
-});
+// build
+gulp.task('build', ['clean', 'be', 'fe']);
 
-gulp.task('build', ['clean', 'logo', 'webapp'], function(cb){
+// build - backend
+gulp.task('be', function(cb){
+	var srcFiles = path.join(BACKEND_FOLDER, './**/*');
 	return es.merge(
 		gulp.src(PACKAGE_JSON),
-		gulp.src(SRC_FILES)
+		gulp.src(srcFiles)
 	).pipe(gulp.dest(BUILD_FOLDER));
 });
 
-gulp.task('watch', ['build'], function(){
-	watch(SRC_WEBAPP, function(){
-		gulp.start('webapp');
+// build - frontend
+gulp.task('fe', function(cb){
+	var p = exec('ng build --no-progress', {
+		cwd: FRONTEND_FOLDER,
+		maxBuffer: 1024 * 500
+	}, function(err, stdout, stderr){
+		cb(err);
 	});
 
-	watch(SRC_FILES)
-	.pipe(gulp.dest(BUILD_FOLDER))
-	
-	watch(BUILD_FILES)
-	.pipe(piSftp);
+	p.stdout.on('data', function(data){
+		var d = data.toString();
+		d = d.replace(/\n$/, '');
+		gutil.log(d);
+	});
+
+	p.stderr.on('data', function(data){
+		var d = data.toString();
+		d = d.replace(/\n$/, '');
+		gutil.log(gutil.colors.red(d));
+	});
 });
 
-gulp.task('deploy', ['build'], function(){
-	return gulp.src(BUILD_FILES)
-	.pipe(piSftp);
+gulp.task('fe-watch', function(cb){
+	var p = exec('ng build --no-progress --watch', {
+		cwd: FRONTEND_FOLDER,
+		maxBuffer: 1024 * 500
+	}, function(err, stdout, stderr){
+		cb(err);
+	});
+
+	p.stdout.on('data', function(data){
+		var d = data.toString();
+		d = d.replace(/\n$/, '');
+		gutil.log(d);
+	});
+
+	p.stderr.on('data', function(data){
+		var d = data.toString();
+		d = d.replace(/\n$/, '');
+		gutil.log(gutil.colors.red(d));
+	});
 });
 
+// dev task
 gulp.task('dev', function(cb){
+	// backend
 	gutil.log(gutil.colors.blue("Starting dev server..."));
 	var p = exec('node server.js', {
-		cwd: SRC_FOLDER,
+		cwd: BACKEND_FOLDER,
 		env: {
 			DEBUG: true
 		}
@@ -84,16 +104,20 @@ gulp.task('dev', function(cb){
 		cb(err);
 	});
 
-	p.stdout.on('data', function (data) {
+	p.stdout.on('data', function(data){
 		var d = data.toString();
 		d = d.replace(/\n$/, '');
 		gutil.log(d);
 	});
 
-	p.stderr.on('data', function (data) {
+	p.stderr.on('data', function(data){
 		var d = data.toString();
 		d = d.replace(/\n$/, '');
 		gutil.log(gutil.colors.red(d));
 	});
 
+	// frontend
+	watch(FRONTEND_FOLDER, function(){
+		gulp.start('fe-watch');
+	});
 });

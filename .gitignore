@@ -57,3 +57,5 @@ typings/
 
 # Private configuration files
 src/firebase.js
+
+build
