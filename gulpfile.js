@@ -126,5 +126,5 @@ gulp.task('fe-watch', function(cb){
 });
 
 gulp.task('dev', function(){
-	runSequence('clean', 'fe', ['fe-watch', 'be-server']);	
+	runSequence('clean', 'be', 'fe', ['fe-watch', 'be-server']);	
 });
