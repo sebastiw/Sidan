@@ -6,6 +6,8 @@ var path = require('path');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 
+var runSequence = require('run-sequence');
+
 var exec = require('child_process').exec;
 
 var useref = require('gulp-useref');
@@ -37,7 +39,9 @@ gulp.task('clean', function(){
 });
 
 // build
-gulp.task('build', ['clean', 'be', 'fe']);
+gulp.task('build', function(){
+	return runSequence('clean', ['be', 'fe']);
+});
 
 // build - backend
 gulp.task('be', function(cb){
@@ -92,18 +96,18 @@ gulp.task('fe-watch', function(cb){
 });
 
 // dev task
-gulp.task('dev', function(cb){
-	// backend
+gulp.task('dev-be', function(cb){
+	console.log("Starting backend...");
 	gutil.log(gutil.colors.blue("Starting dev server..."));
 	var p = exec('node server.js', {
-		cwd: BACKEND_FOLDER,
+		cwd: BUILD_FOLDER,
 		env: {
 			DEBUG: true
 		}
 	}, function (err, stdout, stderr) {
 		cb(err);
 	});
-
+	
 	p.stdout.on('data', function(data){
 		var d = data.toString();
 		d = d.replace(/\n$/, '');
@@ -115,9 +119,12 @@ gulp.task('dev', function(cb){
 		d = d.replace(/\n$/, '');
 		gutil.log(gutil.colors.red(d));
 	});
-
-	// frontend
-	watch(FRONTEND_FOLDER, function(){
+});
+gulp.task('dev-fe', function(cb){
+	console.log("Watching files...");
+	var srcFiles = path.join(FRONTEND_FOLDER, './**/*');
+	watch(srcFiles, function(){
 		gulp.start('fe-watch');
 	});
 });
+gulp.task('dev', ['dev-be', 'dev-fe']);
