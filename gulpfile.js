@@ -74,29 +74,8 @@ gulp.task('fe', function(cb){
 	});
 });
 
-gulp.task('fe-watch', function(cb){
-	var p = exec('ng build --no-progress --watch', {
-		cwd: FRONTEND_FOLDER,
-		maxBuffer: 1024 * 500
-	}, function(err, stdout, stderr){
-		cb(err);
-	});
-
-	p.stdout.on('data', function(data){
-		var d = data.toString();
-		d = d.replace(/\n$/, '');
-		gutil.log(d);
-	});
-
-	p.stderr.on('data', function(data){
-		var d = data.toString();
-		d = d.replace(/\n$/, '');
-		gutil.log(gutil.colors.red(d));
-	});
-});
-
 // dev task
-gulp.task('dev-be', function(cb){
+gulp.task('be-server', function(cb){
 	console.log("Starting backend...");
 	gutil.log(gutil.colors.blue("Starting dev server..."));
 	var p = exec('node server.js', {
@@ -120,11 +99,32 @@ gulp.task('dev-be', function(cb){
 		gutil.log(gutil.colors.red(d));
 	});
 });
-gulp.task('dev-fe', function(cb){
+
+gulp.task('fe-watch', function(cb){
 	console.log("Watching files...");
 	var srcFiles = path.join(FRONTEND_FOLDER, './**/*');
 	watch(srcFiles, function(){
-		gulp.start('fe-watch');
+		var p = exec('ng build --no-progress --watch', {
+			cwd: FRONTEND_FOLDER,
+			maxBuffer: 1024 * 500
+		}, function(err, stdout, stderr){
+			cb(err);
+		});
+
+		p.stdout.on('data', function(data){
+			var d = data.toString();
+			d = d.replace(/\n$/, '');
+			gutil.log(d);
+		});
+
+		p.stderr.on('data', function(data){
+			var d = data.toString();
+			d = d.replace(/\n$/, '');
+			gutil.log(gutil.colors.red(d));
+		});
 	});
 });
-gulp.task('dev', ['dev-be', 'dev-fe']);
+
+gulp.task('dev', function(){
+	runSequence('clean', 'fe', ['fe-watch', 'be-server']);	
+});
