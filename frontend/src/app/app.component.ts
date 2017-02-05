@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+
+  logoNum = Math.floor(Math.random()*100) >= 95 ? '2' : '1';
 }
