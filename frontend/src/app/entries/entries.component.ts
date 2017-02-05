@@ -36,7 +36,12 @@ export class EntriesComponent implements OnInit {
 
   	this.getEntries()
   	.subscribe(
-      entries => this.entries = entries,
+      entries => {
+        this.entries = entries.map(entry => {
+          entry.Date = entry.Date.substr(0, 10);
+          return entry;
+        });
+      },
       error => console.error('Error: ' + error),
       () => console.log('Completed!')
     );
