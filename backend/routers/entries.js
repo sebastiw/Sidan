@@ -1,4 +1,6 @@
 
+var _ = require('underscore');
+
 var express = require('express');
 
 var request = require('request');
@@ -27,12 +29,21 @@ module.exports = (function(){
 		};
 
 		request(options, function(err, requestRes, body){
-			console.log("response", !!err, res.statusCode, body);
 			if( !!err ) return sendError(res, "Unable to get messages.", err);
 
 			//if( requestRes.statusCode !== 200 ) return sendError(res, "Invalid response code for messages: "+requestRes.statusCode);
 			
-			res.json(JSON.parse(body));
+			var entries = JSON.parse(body);
+			if( !!entries.Entries ) entries = entries.Entries;
+
+			_.each(entries, function(entry){
+				if( !!entry.Secret ){
+					entry.Message = null;
+					entry.Signature = null;
+				}
+			});
+
+			res.json(entries);
 		});
 	});
 

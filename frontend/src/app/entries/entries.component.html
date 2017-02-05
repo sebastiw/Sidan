@@ -1,0 +1,10 @@
+
+<div class="entry" *ngFor="let entry of entries">
+	<i *ngIf="!!entry.Secret">hemlis</i>
+	{{entry.Message}}
+	<br>
+	<b>{{entry.Signature}}</b>
+	|
+	{{entry.Date}}, {{entry.Time}}
+	<hr>
+</div>
