@@ -1,10 +1,31 @@
+<div class="menyrad">
+  <div class="inloggning">
+    <input type="text" id="nummer" value="#" />
+    <input type="password" id="losenord" value="" />
+    <input type="button" id="in" value="in" />
+  </div>
+  <div class="lankar">
+    <a routerLink="/write" routerLinkActive="active">skriva inlägg</a>
+    <a href="#">arrsidan</a>
+  </div>
+</div>
 
-<a routerLink="/">
-	<img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
-</a>
+<div class="arr">
+  <app-arr></app-arr>
+</div>
 
-<div>
-	<a routerLink="/write" routerLinkActive="active">skriva inlägg</a>
+<div class="content">
+  <a routerLink="/">
+    <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
+  </a>
+  <app-entries></app-entries>
+</div>
+
+<div class="poll">
+</div>
+
+<div class="blaskan">
 </div>
 
 <router-outlet></router-outlet>
+

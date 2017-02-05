@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EntriesComponent } from './entries/entries.component';
+import { ArrComponent } from './arr/arr.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { WriteEntryComponent } from './write-entry/write-entry.component';
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     AppComponent,
     EntriesComponent,
     WriteEntryComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ArrComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

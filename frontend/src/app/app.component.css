@@ -1,0 +1,35 @@
+.arr {
+    float: left;
+}
+.content {
+    float: left;
+    width: 800px;
+}
+.poll {
+    clear: both;
+}
+
+.menyrad {
+    width:100%;
+}
+.inloggning {
+    float: left;
+}
+
+.lankar {
+    float: left;
+}
+
+#nummer {
+    width: 50px;
+    font-size: 0.7em;
+}
+#losenord {
+    width: 100px;
+    font-size: 0.7em;
+}
+
+#in {
+    width: 50px;
+    font-size: 0.7em;
+}
