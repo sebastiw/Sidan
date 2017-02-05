@@ -1,24 +1,11 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
 
+import { Entry } from '../entry';
+
 import 'rxjs/add/operator/map';
-
-
-class Entry {
-	Signature: string
-	Message: string
-	Time: string
-	Date: Date
-	Enheter: number
-	Status: number
-	Likes: string
-	Id: number
-	Secret: boolean
-	PersonalSecret: boolean
-}
-
 
 @Component({
   selector: 'app-entries',
@@ -26,6 +13,13 @@ class Entry {
   styleUrls: ['./entries.component.css']
 })
 export class EntriesComponent implements OnInit {
+
+  private _take = 30;
+  @Input()
+  set take(take: number) {
+    this._take = take || 30;
+  }
+  get take(): number { return this._take; }
 
 	entries: Entry[];
 
@@ -48,7 +42,7 @@ export class EntriesComponent implements OnInit {
   }
 
   getEntries() {
-  	return this.http.get('/json/entries')
+  	return this.http.get('/json/entries?take='+this._take)
   	.map(res => res.json());
   }
 

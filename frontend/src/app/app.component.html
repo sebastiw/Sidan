@@ -1,28 +1,34 @@
-<div class="menyrad">
-  <div class="inloggning">
+<div class="row">
+  <div class="column">
+    <a routerLink="/">
+      <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
+    </a>
+  </div>
+  <div class="column">
     <input type="text" id="nummer" value="#" />
     <input type="password" id="losenord" value="" />
     <input type="button" id="in" value="in" />
   </div>
-  <div class="lankar">
-    <a routerLink="/write" routerLinkActive="active">skriva inlägg</a>
-    <a href="#">arrsidan</a>
+</div>
+<div class="row">
+  <div class="column">
+    <div class="row">
+      <div class="column">
+        <a class="button button-clear" routerLink="/write" routerLinkActive="active">skriva inlägg</a>
+        <a class="button button-clear" href="#">arrsidan</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
   </div>
-</div>
+  <div class="column column-25">
+    <div class="arr">    
+      <app-arr></app-arr>
+    </div>
 
-<div class="arr">
-  <app-arr></app-arr>
-</div>
-
-<div class="content">
-  <a routerLink="/">
-    <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
-  </a>
-  <router-outlet></router-outlet>
-</div>
-
-<div class="poll">
-</div>
-
-<div class="blaskan">
+    <div class="blaskan">
+    </div>
+    
+    <div class="poll">
+    </div>
+  </div>
 </div>

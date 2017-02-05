@@ -1,3 +1,58 @@
-<p>
-  write-entry works!
-</p>
+
+<form (ngSubmit)="onSubmit()">
+	<fieldset [disabled]="!!posting">
+		<div>
+			<label for="signature">Namn: (obligatoriskt)</label>
+			<input value="#" [(ngModel)]="entry.Signature" name="signature">
+		</div>
+
+		<div>
+			<label>Bättre bild:</label>
+			<input type="file" disabled="disabled">
+		</div>
+
+		<div>
+			<label for="enheter">Rapportera enheter öl / vin / sprit / cider(?):</label>
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="0" checked="checked"> 0
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="1"> 1
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="2"> 2
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="3"> 3
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="4"> 4
+			<input type="radio" name="enheter" [(ngModel)]="entry.Enheter" value="5"> 5
+		</div>
+
+		<div>
+			<label for="status">Stuk</label>
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="0" checked="checked"> plain
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="1"> politik
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="5"> nsfw
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="2"> #27
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="3"> #44
+			<input type="radio" name="status" [(ngModel)]="entry.Status" value="4"> #31 vs #45
+		</div>
+
+		<div>
+			<label for="message">Meddelande:</label>
+			<textarea wrap="soft" name="message" [(ngModel)]="entry.Message"></textarea>
+		</div>
+		
+		<div>
+			<label for="secret">
+				<input type="checkbox" name="secret" [(ngModel)]="entry.Secret">
+				Hemlis
+			</label>
+		</div>
+	</fieldset>
+	
+	<div>
+		{{error}}
+	</div>
+
+	<div class="submit">
+		<button type="submit" [disabled]="!!posting">Skicka</button>
+	</div>
+</form>
+
+<hr>
+
+<app-entries [take]="3"></app-entries>

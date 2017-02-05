@@ -38,8 +38,7 @@ _.each(routes, function(name){
 // webapp
 app.use('/assets', express.static('www/assets/'));
 app.get('*', function(req, res){
-	console.log(req.path, req.path.indexOf('.bundle.js'));
-
+	
 	if( req.path.indexOf('.bundle.') > 0 ){
 		var bundlePath = path.join(__dirname, 'www', req.path.substr(1));
 		return res.sendFile(bundlePath);

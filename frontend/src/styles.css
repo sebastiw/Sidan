@@ -4,3 +4,7 @@ body {
 	background-color: rgb(179, 223, 208);
 	color: rgb(173, 36, 71);
 }
+
+textarea {
+	background-color: white;
+}
