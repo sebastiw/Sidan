@@ -5,5 +5,9 @@
 	<b>{{entry.Signature}}</b>
 	|
 	{{entry.Date}}, {{entry.Time}}
+  <span *ngIf="entry.Likes != '0'">
+  	<img src="/assets/img/like3.gif" width="13" height="12">
+  	{{entry.Likes}}
+  </span>
 	<hr>
 </div>
