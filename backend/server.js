@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// WEB
+// json api
 var routes = fs.readdirSync("./routers/");
 routes = _.chain(routes)
 .filter(function(file){
@@ -35,8 +35,23 @@ _.each(routes, function(name){
 	app.use('/json/'+name, require('./routers/'+name+'.js'));
 });
 
-app.use(express.static('www/'));
+// webapp
+app.use('/assets', express.static('www/assets/'));
+app.get('*', function(req, res){
+	console.log(req.path, req.path.indexOf('.bundle.js'));
 
+	if( req.path.indexOf('.bundle.') > 0 ){
+		var bundlePath = path.join(__dirname, 'www', req.path.substr(1));
+		return res.sendFile(bundlePath);
+	}
+
+	var indexPath = path.join(__dirname, 'www/index.html');
+	if( !fs.existsSync(indexPath) ) return res.status(404).send("Unable to load sidan (tm).");
+
+  res.sendFile(indexPath);
+});
+
+// start server
 var port = process.env.PORT || 8080; // set our port
 var server = app.listen(port);
 console.log('Sidan started:', port);

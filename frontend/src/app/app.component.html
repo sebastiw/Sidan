@@ -1,4 +1,10 @@
 
-<img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
+<a routerLink="/">
+	<img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
+</a>
 
-<app-entries></app-entries>
+<div>
+	<a routerLink="/write" routerLinkActive="active">skriva inlägg</a>
+</div>
+
+<router-outlet></router-outlet>

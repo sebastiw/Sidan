@@ -6,12 +6,25 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { EntriesComponent } from './entries/entries.component';
 
+import { RouterModule, Routes } from '@angular/router';
+import { WriteEntryComponent } from './write-entry/write-entry.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  { path: 'write', component: WriteEntryComponent },
+  { path: '',  component: EntriesComponent },
+  { path: '**', component: PageNotFoundComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
-    EntriesComponent
+    EntriesComponent,
+    WriteEntryComponent,
+    PageNotFoundComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
     HttpModule
