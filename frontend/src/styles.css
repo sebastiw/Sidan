@@ -1,10 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
+	padding-top: 10px;
+
 	background-color: rgb(179, 223, 208);
 	color: rgb(173, 36, 71);
 }
 
 textarea {
 	background-color: white;
+}
+
+
+@media (max-width: 39.999999999rem) {
+	.column {
+    width: 100%!important;
+    max-width: 100%!important;
+	}
 }

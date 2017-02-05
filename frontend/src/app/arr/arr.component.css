@@ -1,18 +1,13 @@
 .arr {
     padding: 10px;
-    width: 300px;
     font-size: 0.7em;
 }
 
 .datum {
     padding-right: 15px;
-    float: left;
 }
 .namn_plats {
-    float: left;
-}
-.namn_plats div {
-    float: left;
+    padding-left: 10px;
 }
 .deltagare {
     clear:both;

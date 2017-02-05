@@ -1,10 +1,14 @@
 <div class="arr" *ngFor="let arr of arrs">
-  <div class="datum"><a href="#">{{arr.Datum | date: "EEE d/M"}}</a></div>
-  <div class="namn_plats">
-    <div class="namn">{{arr.Namn}}</div>
-    <div *ngIf="!!arr.Namn && !!arr.Plats"> @ </div>
-    <div class="plats">{{arr.Plats}}</div>
+  <div>
+  	<a href="#" class="datum">{{arr.Datum | date: "EEE d/M"}}</a>
+
+	  <span class="namn_plats">
+	    <span class="namn">{{arr.Namn}}</span>
+	    <span *ngIf="!!arr.Namn && !!arr.Plats"> @ </span>
+	    <span class="plats"></span>
+	  </span>
   </div>
+  
   <div class="deltagare">{{arr.Deltagare}}</div>
   <div class="lurpassare" *ngIf="!!arr.Kanske">Lurpassar: {{arr.Kanske}}</div>
   <div class="hetsade" *ngIf="!!arr.Hets">Hets: {{arr.Hetsade}}</div>

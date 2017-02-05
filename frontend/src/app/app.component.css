@@ -1,4 +1,17 @@
 
+.menu > a.disabled {
+	pointer-events: none;
+	cursor: default;
+	text-decoration: underline;
+	color: #222;
+}
+
 router-outlet {
 	margin: 10px;
+}
+
+@media (min-width: 40.0rem) {
+    .sidebar {
+        padding-top: 58px;
+    }
 }

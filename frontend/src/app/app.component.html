@@ -4,23 +4,26 @@
       <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
     </a>
   </div>
-  <div class="column">
-    <input type="text" id="nummer" value="#" />
-    <input type="password" id="losenord" value="" />
-    <input type="button" id="in" value="in" />
+  <div class="column column-25">
+    <app-login></app-login>
   </div>
 </div>
 <div class="row">
   <div class="column">
     <div class="row">
-      <div class="column">
-        <a class="button button-clear" routerLink="/write" routerLinkActive="active">skriva inlägg</a>
+      <div class="column menu">
+        <a class="button button-clear" routerLink="/write" routerLinkActive="disabled">skriva inlägg</a>
         <a class="button button-clear" href="#">arrsidan</a>
       </div>
     </div>
-    <router-outlet></router-outlet>
+
+    <div class="row">
+      <div class="column">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
-  <div class="column column-25">
+  <div class="column column-25 sidebar">
     <div class="arr">    
       <app-arr></app-arr>
     </div>
