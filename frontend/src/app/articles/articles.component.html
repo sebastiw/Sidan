@@ -1,0 +1,4 @@
+<div class="article" *ngFor="let article of articles">
+  <a href="/article/{{article.Id}}">{{article.Header}}</a>
+  <i>{{article.Date | slice: 0:10 }}</i>
+</div>

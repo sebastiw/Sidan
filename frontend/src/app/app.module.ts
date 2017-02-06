@@ -12,6 +12,7 @@ import { WriteEntryComponent } from './write-entry/write-entry.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { PollComponent } from './poll/poll.component';
+import { ArticlesComponent } from './articles/articles.component';
 
 const appRoutes: Routes = [
   { path: 'write', component: WriteEntryComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     LoginComponent,
     PollComponent,
     PollComponent,
-    PollComponent
+    PollComponent,
+    ArticlesComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
