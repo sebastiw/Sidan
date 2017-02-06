@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WriteEntryComponent } from './write-entry/write-entry.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { PollComponent } from './poll/poll.component';
 
 const appRoutes: Routes = [
   { path: 'write', component: WriteEntryComponent },
@@ -25,7 +26,10 @@ const appRoutes: Routes = [
     WriteEntryComponent,
     PageNotFoundComponent,
     ArrComponent,
-    LoginComponent
+    LoginComponent,
+    PollComponent,
+    PollComponent,
+    PollComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

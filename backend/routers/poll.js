@@ -11,10 +11,8 @@ module.exports = (function(){
     var router = express.Router();
 
     router.get('', function(req, res){
-        var fromDate = (new Date()).toISOString();
-
         var options = {
-            url: 'http://chalmerslosers.com:9000/jsb-url/Sandbox/ReadArr/json?fromDate=' + fromDate
+            url: 'http://chalmerslosers.com:9000/jsb-url/Sandbox/ReadPoll/json'
         };
 
         var authString = 'Basic c3ltcG9zaWV0Og==';
@@ -32,10 +30,10 @@ module.exports = (function(){
 
             //if( requestRes.statusCode !== 200 ) return sendError(res, "Invalid response code for messages: "+requestRes.statusCode);
 
-            var arrs = JSON.parse(body);
-            if( !!arrs.Arr ) arrs = arrs.Arr;
+            var poll = JSON.parse(body);
+            if( !!poll.Poll ) poll = poll.Poll;
 
-            res.json(arrs);
+            res.json(poll);
         });
     });
 

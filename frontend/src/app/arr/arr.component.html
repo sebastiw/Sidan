@@ -1,14 +1,14 @@
 <div class="arr" *ngFor="let arr of arrs">
   <div>
-  	<a href="#" class="datum">{{arr.Datum | date: "EEE d/M"}}</a>
+    <a href="#" class="datum">{{arr.Datum | date: "EEE d/M"}}</a>
 
-	  <span class="namn_plats">
-	    <span class="namn">{{arr.Namn}}</span>
-	    <span *ngIf="!!arr.Namn && !!arr.Plats"> @ </span>
-	    <span class="plats"></span>
-	  </span>
+    <span class="namn_plats">
+      <span class="namn">{{arr.Namn}}</span>
+      <span *ngIf="!!arr.Namn && !!arr.Plats"> @ </span>
+      <span class="plats"></span>
+    </span>
   </div>
-  
+
   <div class="deltagare">{{arr.Deltagare}}</div>
   <div class="lurpassare" *ngIf="!!arr.Kanske">Lurpassar: {{arr.Kanske}}</div>
   <div class="hetsade" *ngIf="!!arr.Hets">Hets: {{arr.Hetsade}}</div>
