@@ -37,5 +37,7 @@ Om det inte fungerar:
 	npm install npm typ 56 gånger
 	npm install -g gulp angular-cli typ 49 gånger
 	npm cache clean -r (detta kan funka också oklart)
+	Lägg även till denna rad i eran host fil:
+	151.101.36.162 registry.npmjs.org
 	lycka till
 ```
