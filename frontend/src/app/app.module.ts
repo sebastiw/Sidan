@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { PollComponent } from './poll/poll.component';
 import { ArticlesComponent } from './articles/articles.component';
 
+import { AuthenticationService } from './authentication.service';
+
 const appRoutes: Routes = [
   { path: 'write', component: WriteEntryComponent },
   { path: '',  component: EntriesComponent },
@@ -29,8 +31,6 @@ const appRoutes: Routes = [
     ArrComponent,
     LoginComponent,
     PollComponent,
-    PollComponent,
-    PollComponent,
     ArticlesComponent
   ],
   imports: [
@@ -39,7 +39,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

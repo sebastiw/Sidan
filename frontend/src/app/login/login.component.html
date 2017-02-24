@@ -1,6 +1,19 @@
 
-<form>
-	<input type="text" id="nummer" value="#" />
-	<input type="password" id="losenord" value="" />
-	<button type="submit" class="float-right">in</button>
-</form>
+<span>Is logged in: {{isLoggedIn}}</span>
+
+<div *ngIf="!isLoggedIn">
+	<form (ngSubmit)="onSubmit()">
+		<input type="text" autocomplete="sidan-username" [(ngModel)]="username" name="username" [disabled]="!!posting" />
+		<input type="password" autocomplete="sidan-password" [(ngModel)]="password" name="password" [disabled]="!!posting" />
+
+		<span class="float-left">{{error}}</span>
+		<button type="submit" class="float-right" [disabled]="!!posting">in</button>
+	</form>
+</div>
+
+<!-- Todo -->
+<div *ngIf="!!isLoggedIn">
+	<form (ngSubmit)="onLogout()">
+		<button type="submit" class="float-right" [disabled]="!!posting">ut</button>
+	</form>
+</div>
