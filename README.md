@@ -29,9 +29,13 @@ För att byta port så sätt environment variabeln "PORT" (standard 8080).
  export PORT=9001
 ```
 
-Om det för allförmodan inte fungerar:
+Om det inte fungerar  inte fungerar:
 ```
 	uppdatera nodejs till senaste version
+	curl -sl https://deb.nodesource.com/setup_7x | sudo -E bash --
+	sudo apt-get install nodejs
 	npm install npm typ 56 gånger
 	npm install -g gulp angular-cli typ 49 gånger
+	npm cache clean -r (detta kan funka också oklart)
+	lycka till
 ```
