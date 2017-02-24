@@ -37,4 +37,13 @@ export class ArrComponent implements OnInit {
     getArrs() {
         return this.http.get('/json/arrs').map(res => res.json());
     }
+
+    fixDate(dateStr) {
+        var match = /^(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d)/.exec(dateStr);
+        return new Date(Number(match[1]),
+                        Number(match[2]) - 1,
+                        Number(match[3]),
+                        Number(match[4]),
+                        Number(match[5]));
+    }
 }

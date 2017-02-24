@@ -1,6 +1,6 @@
 <div class="arr" *ngFor="let arr of arrs">
   <div>
-    <a href="#" class="datum">{{arr.Datum | date: "EEE d/M"}}</a>
+    <a href="#" class="datum">{{fixDate(arr.Datum) | date: "EEE d/M"}}</a>
 
     <span class="namn_plats">
       <span class="namn">{{arr.Namn}}</span>
