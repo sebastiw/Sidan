@@ -75,7 +75,7 @@ gulp.task('fe', function(cb){
 });
 
 // dev task
-gulp.task('be-server', function(cb){
+gulp.task('be-server', ['be'], function(cb){
 	console.log("Starting backend...");
 	gutil.log(gutil.colors.blue("Starting dev server..."));
 	var p = exec('node server.js', {

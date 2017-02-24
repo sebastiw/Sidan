@@ -16,9 +16,12 @@ var app = express();
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
+var session = require('express-session');
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'makeClGr34tAg4in', cookie: { maxAge: 60000 }}));
 
 // json api
 var routes = fs.readdirSync("./routers/");
