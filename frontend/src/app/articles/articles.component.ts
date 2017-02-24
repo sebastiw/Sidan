@@ -16,6 +16,7 @@ class Article {
 })
 export class ArticlesComponent implements OnInit {
 
+    private _take = 5;
     articles: Article[];
 
     constructor(private http: Http) { }
@@ -27,10 +28,18 @@ export class ArticlesComponent implements OnInit {
                 this.articles = articles;
             },
             error => console.error('Error: ' + error),
-            () => console.log('Completed!')
+            () => console.log('Completed fetching Articles!')
         );
     }
+
     getArticles() {
-        return this.http.get('/json/articles').map(res => res.json());
+      return this.http.get('/json/articles?take=' + this._take)
+        .map(res => res.json());
+    }
+
+    showmore() {
+      this._take = this._take + Math.round(this._take * 1.1);
+      this.ngOnInit();
+      return false;
     }
 }

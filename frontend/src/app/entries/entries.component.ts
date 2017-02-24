@@ -27,9 +27,7 @@ export class EntriesComponent implements OnInit {
 
   ngOnInit() {
   	this.entries = [];
-
-  	this.getEntries()
-  	.subscribe(
+    this.getEntries().subscribe(
       entries => {
         this.entries = entries.map(entry => {
           entry.Date = entry.Date.substr(0, 10);
@@ -37,13 +35,18 @@ export class EntriesComponent implements OnInit {
         });
       },
       error => console.error('Error: ' + error),
-      () => console.log('Completed!')
+      () => console.log('Completed fetching Entries!')
     );
   }
 
   getEntries() {
-  	return this.http.get('/json/entries?take='+this._take)
-  	.map(res => res.json());
+    return this.http.get('/json/entries?take=' + this._take)
+      .map(res => res.json());
   }
 
+  showmore() {
+    this._take = this._take + Math.round(this._take * 1.1);
+    this.ngOnInit();
+    return false;
+  }
 }
