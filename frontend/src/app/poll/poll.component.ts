@@ -29,7 +29,7 @@ export class PollComponent implements OnInit {
                 this.polls = polls;
             },
             error => console.error('Error: ' + error),
-            () => console.log('Completed!')
+            () => console.log('Completed fetching Poll!')
         );
     }
 
