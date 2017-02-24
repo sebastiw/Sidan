@@ -3,7 +3,7 @@
 	<fieldset [disabled]="!!posting">
 		<div>
 			<label for="signature">Namn: (obligatoriskt)</label>
-			<input value="#" [(ngModel)]="entry.Signature" name="signature">
+			<input value="#" [(ngModel)]="entry.Signature" name="signature" [disabled]="!allowChangeName">
 		</div>
 
 		<div>
