@@ -42,7 +42,7 @@ export class AuthenticationService {
                 .post('/json/auth/logout', null, options)
                 .subscribe(res => {
                   this.currentUser = null;
-                  resolve(true);
+                  resolve(null);
                 }, error => {
                     reject(error);
                 });
