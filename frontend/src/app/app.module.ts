@@ -29,8 +29,6 @@ const appRoutes: Routes = [
     ArrComponent,
     LoginComponent,
     PollComponent,
-    PollComponent,
-    PollComponent,
     ArticlesComponent
   ],
   imports: [
