@@ -7,7 +7,8 @@ module.exports = {
 	login: login,
 	logout: logout,
 	isAuthMiddleware: isAuthMiddleware,
-	getAuthString: getAuthString
+	getAuthString: getAuthString,
+	isAuthenticated: isAuthenticated
 };
 
 function login(req, username, password, cb){
@@ -28,7 +29,7 @@ function login(req, username, password, cb){
 		req.session.creds = {
 			username: username
 		};
-		passwordMap[req.session.username] = password;
+		passwordMap[req.session.creds.username] = password;
 
 		cb && cb(null, req.session.creds);
 	});
@@ -60,4 +61,8 @@ function getAuthString(username, password){
 	if( !password ) throw "No password found for: "+username;
 
 	return 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+}
+
+function isAuthenticated(req){
+	return !!req.session.creds;
 }

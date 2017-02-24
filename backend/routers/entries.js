@@ -7,6 +7,8 @@ var request = require('request');
 
 var sendError = require('../lib/send-error.js');
 
+var auth = require('../lib/auth.js');
+
 module.exports = (function(){
 	var router = express.Router();
 
@@ -28,7 +30,7 @@ module.exports = (function(){
 		};
 
 		var authString = 'Basic c3ltcG9zaWV0Og==';
-		if( !!req.isAuthenticated ) authString = createAuth(req);
+		if( !!auth.isAuthenticated(req) ) authString = auth.getAuthString(req);
 
 		options.headers = {
 			"Authorization": authString
@@ -63,7 +65,7 @@ module.exports = (function(){
 		options.qs = entry;
 
 		var authString = 'Basic c3ltcG9zaWV0Og==';
-		if( !!req.isAuthenticated ) authString = createAuth(req);
+		if( !!auth.isAuthenticated(req) ) authString = auth.getAuthString(req);
 
 		options.headers = {
 			"Authorization": authString
@@ -78,7 +80,3 @@ module.exports = (function(){
 
 	return router;
 })();
-
-function createAuth(req){
-	return "Basic lalala";
-}
