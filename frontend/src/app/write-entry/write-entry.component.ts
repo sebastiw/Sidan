@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+import { AuthenticationService } from '../authentication.service';
+
 import { Entry } from '../entry';
 
 @Component({
@@ -13,15 +15,23 @@ export class WriteEntryComponent implements OnInit {
 
 	entry: Entry;
 	error: string;
-	posting: boolean;
+  posting: boolean;
+	allowChangeName: boolean;
 
   constructor(
   	private http:Http,
-  	private location:Location
+  	private location:Location,
+    private auth:AuthenticationService
   ) {}
 
   ngOnInit() {
+    this.allowChangeName = true;
+
   	this.entry = this.getNewEntry();
+    let user = this.auth.getCurrentUser();
+    if( !user ) return;
+    this.entry.Signature = user.username;
+    this.allowChangeName = false;
   }
 
   onSubmit() {
