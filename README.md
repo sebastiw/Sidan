@@ -29,7 +29,7 @@ För att byta port så sätt environment variabeln "PORT" (standard 8080).
  export PORT=9001
 ```
 
-Om det inte fungerar  inte fungerar:
+Om det inte fungerar:
 ```
 	uppdatera nodejs till senaste version
 	curl -sl https://deb.nodesource.com/setup_7x | sudo -E bash --
