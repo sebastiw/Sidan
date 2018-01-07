@@ -1,22 +1,18 @@
 <div class="row">
   <div class="column">
-    <a routerLink="/">
-      <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
-    </a>
-  </div>
-  <div class="column column-25">
-    <app-login></app-login>
-  </div>
-</div>
-<div class="row">
-  <div class="column">
+    <div class="row">
+      <a routerLink="/">
+        <img src="/assets/img/logga_transp_{{logoNum}}.gif" alt="chalmerslosers" />
+      </a>
+    </div>
     <div class="row">
       <div class="column menu">
-        <a class="button button-clear" routerLink="/write" routerLinkActive="disabled">skriva inlägg</a>
-        <a class="button button-clear" href="#">arrsidan</a>
+        <div class="row">
+          <a class="button button-clear" routerLink="/write" routerLinkActive="disabled">skriva inlägg</a>
+          <a class="button button-clear" href="#">arrsidan</a>
+        </div>
       </div>
     </div>
-
     <div class="row">
       <div class="column">
         <router-outlet></router-outlet>
@@ -24,14 +20,15 @@
     </div>
   </div>
   <div class="column column-25 sidebar">
+    <div class="login">
+      <app-login></app-login>
+    </div>
     <div class="arr">
       <app-arr></app-arr>
     </div>
-    <hr />
     <div class="blaskan">
       <app-articles></app-articles>
     </div>
-
     <div class="poll">
       <app-poll></app-poll>
     </div>

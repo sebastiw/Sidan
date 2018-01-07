@@ -1,4 +1,8 @@
 
 input {
-	background-color: white;
+    background-color: white;
+}
+
+div .hold {
+    margin-bottom: 40px;
 }
