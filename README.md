@@ -46,4 +46,12 @@ Om det inte fungerar:
 
 I CSS väg så använder vi biblioteket [milligram](https://milligram.io/)
 
+# Kod
 
+Frontend med design och shiet i `./frontend/`
+Backend med modeller och databaskoppling i `./backend/`
+
+Routes (vilka Rest-APIer man kan använda för att få ut information):
+- Backend i.e. `/json/<app>` e.g. `/json/poll` finns i `backend/routes/<app>.js`
+(definierat i `backend/server.js`)
+- Frontend e.g. `/write` finns definierade i `frontend/src/app/app.module.ts`

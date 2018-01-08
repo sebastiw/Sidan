@@ -16,7 +16,7 @@ router-outlet {
     }
 }
 
-div > .menu, .login, .arr, .blaskan, .poll {
+div > .login, .arr, .blaskan, .poll {
     border: 1px solid;
     padding: 10px;
     margin-bottom: 20px;

@@ -86,7 +86,7 @@ gulp.task('be-server', ['be'], function(cb){
 	}, function (err, stdout, stderr) {
 		cb(err);
 	});
-	
+
 	p.stdout.on('data', function(data){
 		var d = data.toString();
 		d = d.replace(/\n$/, '');
@@ -126,5 +126,5 @@ gulp.task('fe-watch', function(cb){
 });
 
 gulp.task('dev', function(){
-	runSequence('clean', 'be', 'fe', ['fe-watch', 'be-server']);	
+	runSequence('clean', 'be', 'fe', ['fe-watch', 'be-server']);
 });
