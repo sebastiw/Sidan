@@ -12,8 +12,4 @@ RUN chown -R user:user /home/user
 USER user
 
 RUN cd /home/user && \
-    npm install && \
-    cd frontend && \
-    npm install && \
-    cd .. && \
-    gulp
+    make run
